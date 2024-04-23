@@ -1,8 +1,10 @@
-Rem --- HEXAPAWN, for the CBM Amiga ---
-REM --- 2024 by Isaac Garcia Peveri ---
-Rem --- VERSION 1.0
-Rem --- Date written:  10 April 2024
-Rem --- Date Compiled: 17 April 2024
+ REM
+ REM --- HEXAPAWN, for the CBM Amiga ---
+ REM --- 2024 by Isaac Garcia Peveri ---
+ REM --- VERSION 1.0
+ REM --- Date written:  10 April 2024
+ REM --- Date Compiled: 17 April 2024
+ REM
 
 winner% = 0
 DefInt boxNumber: boxNumber = 0

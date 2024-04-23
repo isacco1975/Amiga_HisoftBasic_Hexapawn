@@ -1681,8 +1681,8 @@ SUB ExtractSphere(pbox%) STATIC
               gameGrid%(3) = 2
               OBJECT.OFF 2
               OBJECT.OFF 12
-              OBJECT.ON 3
-              OBJECT.OFF 13
+              OBJECT.ON 4
+              OBJECT.OFF 14
               sbx4$(4) = sbx4$(0)
               Exit Sub
            END If
