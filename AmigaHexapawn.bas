@@ -12,7 +12,7 @@ DefStr wMove(2)
 
 Dim SHARED strGrid$(9)
 DIM SHARED gameGrid%(9)
-DIM matchBox$(31)
+DIM matchBox$(32)
 
 DIM SHARED sbx1$(5)
 DIM SHARED sbx2$(5)
@@ -45,6 +45,7 @@ DIM SHARED sbx28$(5)
 DIM SHARED sbx29$(5)
 DIM SHARED sbx30$(5)
 DIM SHARED sbx31$(5)
+DIM SHARED sbx32$(5)
 '--------------------------------------'
 
 'Main Logic
@@ -173,6 +174,7 @@ InitMatchBoxes:
    matchBox$(28) = "202012100"
    matchBox$(29) = "022101100"
    matchBox$(30) = "200122000"
+   matchBox$(31) = "020021000"
 
    sbx1$(0) = "c"
    sbx1$(1) = "y"
@@ -359,6 +361,12 @@ InitMatchBoxes:
    sbx31$(2) = " "
    sbx31$(3) = " "
    sbx31$(4) = " "
+
+   sbx32$(0) = "c"
+   sbx32$(1) = " "
+   sbx32$(2) = " "
+   sbx32$(3) = " "
+   sbx32$(4) = " "
 
 RETURN
 '--------------------------------------'
@@ -1065,6 +1073,10 @@ CpuMove:
       boxNumber = 31
    END If
 
+   IF strGrid$ = matchBox$(31) THEN
+      boxNumber = 32
+   END If
+
    CALL ExtractSphere(boxNumber)
    GOSUB SetGrid
 
@@ -1195,6 +1207,12 @@ RemoveSphere:
        If boxNumber = 27 Then
            IF sbx27$(4) = "c" THEN
               sbx27$(0) = " "
+           End If
+       End If
+
+       If boxNumber = 32 Then
+           IF sbx32$(4) = "c" THEN
+              sbx32$(0) = " "
            End If
        End If
 
@@ -1524,6 +1542,7 @@ ClearSelectedSpheres:
    sbx29$(4) = " "
    sbx30$(4) = " "
    sbx31$(4) = " "
+   sbx32$(4) = " "
 
 Return
 ' -------------------------------------------------------------
@@ -1902,7 +1921,6 @@ SUB ExtractSphere(pbox%) STATIC
            END IF
         END IF
      END IF
-
 
 '*-- BOX 9
      IF pbox% = 9
@@ -2643,6 +2661,23 @@ SUB ExtractSphere(pbox%) STATIC
         END If
      END If
 
+'*-- BOX 32
+     IF pbox% = 32
+        If (sphereNum% = 1 AND sbx32$(0) <> " ") THEN
+           IF gameGrid%(7) = 0 AND gameGrid%(4) = 2 THEN
+              gameGrid%(7) = 2
+              gameGrid%(4) = 0
+              OBJECT.ON 8
+              OBJECT.OFF 15
+              OBJECT.OFF 5
+              OBJECT.OFF 18
+              sbx32$(4) = sbx32$(0)
+              Exit Sub
+           END If
+        End If
+     End If
+
     COLOR 3,0: locate 10,50: Print "SPHERE: ";sphereNum%
+    COLOR 3,0: locate 1,1: Print "SPHERE BOX 8: ";sbx8$(4)
 End SUB
 '--------------------------------------'
